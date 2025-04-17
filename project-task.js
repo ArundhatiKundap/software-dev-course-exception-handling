@@ -24,46 +24,26 @@ Test and Debug:
 Test the program with valid and invalid inputs to confirm that exceptions are handled gracefully
 and the program continues running as intended.
 */
-
-<<<<<<< HEAD
 // ============================================
 // 🐞 Initial Code with Bugs (to be debugged)
 // ============================================
-const readlineSync = require("readline-sync");
-=======
->>>>>>> 257169972c5a8f0a4cc323b7d1e029cb062ad9fe
-
 // Will need to import / install readline-sync if not done so already within project dir: npm install readline-sync 
 const readlineSync = require('readline-sync');
 
 // Initial Code with Bugs (modified to use readline-sync)
 let animals = [];
 let fees = [];
-<<<<<<< HEAD
+ 
 
-function addAnimal(animalName, fee) {
-
-
-      if ( animalName === "" || fee <= 0  ) {
-
-          throw new Error("Invalid animal name or adoption fee!");
-        
-      } 
-      animals.push(animalName);
-      fees.push(fee);
-     
-
-=======
 function addAnimal(name, fee) {
     if (!name || fee < 0) {
         throw new Error("Invalid animal name or adoption fee!");
     }
     animals.push(name);
     fees.push(fee);
->>>>>>> 257169972c5a8f0a4cc323b7d1e029cb062ad9fe
 }
 function getAdoptionFee(animalName) {
-    let index = animals.indexOf(animalName);
+    let index = animals.indexOf(animalName.toUpperCase());
     if (index === -1) {
         throw new Error("Animal not found in records!");
     }
@@ -72,7 +52,6 @@ function getAdoptionFee(animalName) {
 // Main program
 console.log("Welcome to the Pet Shelter System");
 while (true) {
-<<<<<<< HEAD
     try {
         let action = readlineSync.question("Choose an action: 'add', 'fee', or 'exit': ").toLowerCase();
 
@@ -82,7 +61,7 @@ while (true) {
         }
 
         if (action === "add") {
-            let animal = readlineSync.question("Enter the animal's name: ");
+            let animal = readlineSync.question("Enter the animal's name: ").toUpperCase();
             let fee = Number(readlineSync.question("Enter the adoption fee: "));
 
             try {
@@ -104,29 +83,28 @@ while (true) {
 
         } else {
             console.log("Invalid action. Please choose 'add', 'fee', or 'exit'.");
-           
+
         }
 
     } catch (err) {
-       // console.log("Unexpected error:", err.message);
-        
-=======
-    let action = readlineSync.question("Choose an action: 'add', 'fee', or 'exit': ").toLowerCase();
-    if (action === "exit") {
-        console.log("Goodbye!");
-        break;
-    }
-    if (action === "add") {
-        let animal = readlineSync.question("Enter the animal's name: ");
-        let fee = Number(readlineSync.question("Enter the adoption fee: "));
-        addAnimal(animal, fee);
-        console.log(`${animal} added with a fee of $${fee}.`);
-    } else if (action === "fee") {
-        let animal = readlineSync.question("Enter the animal's name to find its adoption fee: ");
-        console.log(`${animal}'s adoption fee is $${getAdoptionFee(animal)}.`);
-    } else {
-        console.log("Invalid action. Please choose 'add', 'fee', or 'exit'.");
->>>>>>> 257169972c5a8f0a4cc323b7d1e029cb062ad9fe
+        console.log("Unexpected error:", err.message);
+
+        let action = readlineSync.question("Choose an action: 'add', 'fee', or 'exit': ").toLowerCase();
+        if (action === "exit") {
+            console.log("Goodbye!");
+            break;
+        }
+        if (action === "add") {
+            let animal = readlineSync.question("Enter the animal's name: ");
+            let fee = Number(readlineSync.question("Enter the adoption fee: "));
+            addAnimal(animal, fee);
+            console.log(`${animal} added with a fee of $${fee}.`);
+        } else if (action === "fee") {
+            let animal = readlineSync.question("Enter the animal's name to find its adoption fee: ");
+            console.log(`${animal}'s adoption fee is $${getAdoptionFee(animal)}.`);
+        } else {
+            console.log("Invalid action. Please choose 'add', 'fee', or 'exit'.");
+        }
     }
 }
 
@@ -143,5 +121,4 @@ Code Flow Problems:
   What happens if the program throws an exception? Does the rest of the code continue running?
 
 Structured Exception Handling:
-  Add try/catch blocks to handle the above errors gracefully.
-*/
+  Add try/catch blocks to handle the above errors gracefully.*/
