@@ -41,16 +41,23 @@ Your job is to fix it!
 // ============================================
 // 🐞 Initial Code with Bugs (to be debugged)
 // ============================================
+const readlineSync = require("readline-sync");
 
 let animals = [];
 let fees = [];
 
-function addAnimal(name, fee) {
-    if (!name || fee < 0) {
-        throw new Error("Invalid animal name or adoption fee!");
-    }
-    animals.push(name);
-    fees.push(fee);
+function addAnimal(animalName, fee) {
+
+
+      if ( animalName === "" || fee <= 0  ) {
+
+          throw new Error("Invalid animal name or adoption fee!");
+        
+      } 
+      animals.push(animalName);
+      fees.push(fee);
+     
+
 }
 
 function getAdoptionFee(animalName) {
@@ -69,7 +76,7 @@ console.log("Welcome to the Pet Shelter System");
 
 while (true) {
     try {
-        let action = prompt("Choose an action: 'add', 'fee', or 'exit': ").toLowerCase();
+        let action = readlineSync.question("Choose an action: 'add', 'fee', or 'exit': ").toLowerCase();
 
         if (action === "exit") {
             console.log("Goodbye!");
@@ -77,8 +84,8 @@ while (true) {
         }
 
         if (action === "add") {
-            let animal = prompt("Enter the animal's name: ");
-            let fee = Number(prompt("Enter the adoption fee: "));
+            let animal = readlineSync.question("Enter the animal's name: ");
+            let fee = Number(readlineSync.question("Enter the adoption fee: "));
 
             try {
                 addAnimal(animal, fee);
@@ -88,7 +95,7 @@ while (true) {
             }
 
         } else if (action === "fee") {
-            let animal = prompt("Enter the animal's name to find its adoption fee: ");
+            let animal = readlineSync.question("Enter the animal's name to find its adoption fee: ");
 
             try {
                 let fee = getAdoptionFee(animal);
@@ -99,10 +106,12 @@ while (true) {
 
         } else {
             console.log("Invalid action. Please choose 'add', 'fee', or 'exit'.");
+           
         }
 
     } catch (err) {
-        console.log("Unexpected error:", err.message);
+       // console.log("Unexpected error:", err.message);
+        
     }
 }
 
